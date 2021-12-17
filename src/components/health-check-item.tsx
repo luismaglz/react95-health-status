@@ -3,7 +3,7 @@ import {
   EnvironmentHealth,
   HealthClient,
 } from "@navitaire-digital/nsk-api-4.5.0";
-import { Button, Fieldset } from "@react95/core";
+import { Button, Fieldset, Tooltip } from "@react95/core";
 import { FC, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ClientServicesContext } from "../digital-api/clients";
@@ -72,7 +72,9 @@ export const HealthCheckItem: FC<{
   }
 
   const nodes = healthResponse?.health?.nodes?.map((node) => (
-    <HealthInformationDisplay healthInfo={node}></HealthInformationDisplay>
+    <Tooltip text={node.details || "everything looks good"}>
+      <HealthInformationDisplay healthInfo={node}></HealthInformationDisplay>
+    </Tooltip>
   ));
 
   return (
