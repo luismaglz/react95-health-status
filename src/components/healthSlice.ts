@@ -24,8 +24,6 @@ export const healthSlice = createSlice({
       const foundHealth = state.environmentHealth.find(
         (health) => health.key === action.payload.key
       );
-      console.log(foundHealth);
-      console.log(action.payload);
       if (!foundHealth) {
         state.environmentHealth.push({
           key: action.payload.key,
