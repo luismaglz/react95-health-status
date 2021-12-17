@@ -1,5 +1,5 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
-import healthReducer from "../components/health-check-wrapper/healthSlice";
+import healthReducer from "../components/healthSlice";
 
 export const store = configureStore({
   reducer: {

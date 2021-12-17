@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
-import { HealthCheckWrapper } from "./components/health-check-wrapper/health-check-wrapper";
+import { HealthCheckWrapper } from "./components/health-check-wrapper";
 import { ClientServicesProvider } from "./digital-api/clients";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";

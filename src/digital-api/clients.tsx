@@ -9,19 +9,25 @@ export const ClientServicesContext = createContext<{
   nav2HealthClient?: HealthClient;
 }>({});
 
-const endpoint = "http://nvlcmwb100:10261";
-
 export const ClientServicesProvider: FC = ({ children }) => {
   const dispatch = useDispatch();
   const [httpClient] = useState(new DigitalApiHttpClient(dispatch));
   const [sessionService] = useState(new DigitalApiSessionService());
 
   const [nav1HealthClient] = useState(
-    new HealthClient(endpoint, httpClient, sessionService)
+    new HealthClient(
+      "https://proxy.sandbox.navitaire.com",
+      httpClient,
+      sessionService
+    )
   );
 
   const [nav2HealthClient] = useState(
-    new HealthClient(endpoint, httpClient, sessionService)
+    new HealthClient(
+      "https://proxy.sandbox.navitaire.com/nav2",
+      httpClient,
+      sessionService
+    )
   );
 
   const [clients] = useState({

@@ -1,3 +1,4 @@
+import { DigitalApiRestHttpResponse } from "@navitaire-digital/clients-core";
 import {
   EnvironmentHealth,
   HealthClient,
@@ -36,8 +37,21 @@ export const HealthCheckItem: FC<{
     if (!client) {
       return;
     }
-    client
-      .v1_health_get()
+
+    let method: Promise<DigitalApiRestHttpResponse<EnvironmentHealth>> | null =
+      null;
+
+    if (props.type === "api") {
+      method = client.v1_health_get();
+    } else if (props.type === "nsk") {
+      method = client.nsk_v1_health_get();
+    }
+
+    if (!method) {
+      return;
+    }
+
+    method
       .then((response) => {
         const health: EnvironmentHealth = response.body as EnvironmentHealth;
         dispatch(
@@ -64,7 +78,9 @@ export const HealthCheckItem: FC<{
   return (
     <div>
       <div>{key}</div>
-      <Button onClick={() => reloadHealth()}>Check Status</Button>
+      <Button onClick={() => reloadHealth()}>
+        Fetch {healthResponse?.status}
+      </Button>
       {nodes}
     </div>
   );
