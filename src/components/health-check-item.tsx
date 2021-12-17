@@ -3,7 +3,7 @@ import {
   EnvironmentHealth,
   HealthClient,
 } from "@navitaire-digital/nsk-api-4.5.0";
-import { Button } from "@react95/core";
+import { Button, Fieldset } from "@react95/core";
 import { FC, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ClientServicesContext } from "../digital-api/clients";
@@ -76,12 +76,11 @@ export const HealthCheckItem: FC<{
   ));
 
   return (
-    <div>
-      <div>{key}</div>
+    <Fieldset legend={key}>
       <Button onClick={() => reloadHealth()}>
         Fetch {healthResponse?.status}
       </Button>
       {nodes}
-    </div>
+    </Fieldset>
   );
 };
